@@ -9,8 +9,31 @@
 </head>
 <body>
 
+  <!-- MOBILE TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-identity">
+      <div class="topbar-avatar">
+        <img src="../img/fotocv.png" alt="Qumara Rezky Fadilla" />
+      </div>
+      <div>
+        <span class="topbar-name">Qumara Rezky Fadilla</span>
+        <span class="topbar-role">Data Management &amp; Analyst</span>
+      </div>
+    </div>
+    <button class="menu-toggle" aria-label="Buka menu" aria-expanded="false">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </header>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" aria-label="Tutup menu">✕</button>
+
     <div class="sidebar-top">
       <div class="avatar-wrap">
         <div class="avatar">
@@ -19,16 +42,16 @@
         <div class="status-dot"></div>
       </div>
       <h1 class="name">Qumara<br><em>Rezky</em></h1>
-      <p class="role">Professional Data Management &amp; Analyst </p>
+      <p class="role">Professional Data Management &amp; Analyst</p>
     </div>
 
     <nav class="sidebar-nav">
-      <a href="#tentang" class="nav-link active">Tentang</a>
+      <a href="#tentang"    class="nav-link active">Tentang</a>
       <a href="#pengalaman" class="nav-link">Pengalaman</a>
       <a href="#pendidikan" class="nav-link">Pendidikan</a>
-      <a href="#keahlian" class="nav-link">Keahlian</a>
+      <a href="#keahlian"   class="nav-link">Keahlian</a>
       <a href="#portofolio" class="nav-link">Portofolio</a>
-      <a href="#kontak" class="nav-link">Kontak</a>
+      <a href="#kontak"     class="nav-link">Kontak</a>
     </nav>
 
     <div class="sidebar-contacts">
@@ -38,7 +61,7 @@
       </div>
       <div class="contact-item">
         <span class="contact-icon">✦</span>
-        <span>+62 812 3456 7890</span>
+        <span>+62 821 4747 3805</span>
       </div>
       <div class="contact-item">
         <span class="contact-icon">✦</span>
@@ -93,9 +116,7 @@
     <section id="pengalaman" class="section">
       <div class="section-label">02 — Pengalaman Kerja</div>
       <h2 class="section-title">Perjalanan<br><em>Karier Pendidikan</em></h2>
-
       <div class="timeline">
-
         <div class="timeline-item">
           <div class="timeline-meta">
             <span class="timeline-year">2022 — Sekarang</span>
@@ -113,7 +134,6 @@
             </div>
           </div>
         </div>
-
         <div class="timeline-item">
           <div class="timeline-meta">
             <span class="timeline-year">2019 — 2022</span>
@@ -129,7 +149,6 @@
             </div>
           </div>
         </div>
-
         <div class="timeline-item">
           <div class="timeline-meta">
             <span class="timeline-year">2017 — 2019</span>
@@ -145,7 +164,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -153,7 +171,6 @@
     <section id="pendidikan" class="section">
       <div class="section-label">03 — Pendidikan</div>
       <h2 class="section-title">Latar<br><em>Belakang</em></h2>
-
       <div class="edu-grid">
         <div class="edu-card">
           <div class="edu-year">2013 — 2017</div>
@@ -180,10 +197,9 @@
     <section id="keahlian" class="section">
       <div class="section-label">04 — Keahlian</div>
       <h2 class="section-title">Toolset &amp;<br><em>Kompetensi</em></h2>
-
       <div class="skills-block">
         <div class="skill-group">
-          <h4 class="skill-group-title">Desain & Prototyping</h4>
+          <h4 class="skill-group-title">Desain &amp; Prototyping</h4>
           <div class="skill-bars">
             <div class="skill-bar-item">
               <span>Figma</span>
@@ -204,7 +220,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <h4 class="skill-group-title">Riset & Strategi</h4>
+          <h4 class="skill-group-title">Riset &amp; Strategi</h4>
           <div class="skill-bars">
             <div class="skill-bar-item">
               <span>User Research</span>
@@ -244,7 +260,6 @@
     <section id="portofolio" class="section">
       <div class="section-label">05 — Portofolio</div>
       <h2 class="section-title">School Project<br><em>Pilihan</em></h2>
-
       <div class="portfolio-grid">
         <div class="portfolio-card featured">
           <div class="port-num">01</div>
@@ -285,9 +300,8 @@
       <div class="section-label">06 — Kontak</div>
       <h2 class="section-title">Mari<br><em>Berkolaborasi</em></h2>
       <p class="bio">Saya terbuka untuk peluang kerja penuh waktu, proyek freelance, atau diskusi santai seputar desain dan produk. Jangan ragu menghubungi saya!</p>
-
       <div class="contact-grid">
-        <a href="mailto:aryan@email.com" class="contact-card">
+        <a href="mailto:qumararezky@gmail.com" class="contact-card">
           <span class="cc-icon">@</span>
           <span class="cc-label">Email</span>
           <span class="cc-value">qumararezky@gmail.com</span>
@@ -313,11 +327,40 @@
   </main>
 
   <script>
-    // Active nav link on scroll
+    /* ── Hamburger / Sidebar drawer ── */
+    const sidebar    = document.getElementById('sidebar');
+    const overlay    = document.getElementById('overlay');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideClose  = document.querySelector('.sidebar-close');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', openSidebar);
+    sideClose.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 900) closeSidebar();
+      });
+    });
+
+    /* ── Active nav on scroll ── */
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.id;
@@ -326,21 +369,17 @@
           });
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
 
-    sections.forEach(s => observer.observe(s));
+    sections.forEach(s => sectionObserver.observe(s));
 
-    // Animate bars on scroll
-    const barFills = document.querySelectorAll('.bar-fill');
+    /* ── Skill bar animation ── */
     const barObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.width = entry.target.style.getPropertyValue('--w') || '0%';
-          entry.target.classList.add('animated');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('animated');
       });
     }, { threshold: 0.3 });
-    barFills.forEach(b => barObserver.observe(b));
+    document.querySelectorAll('.bar-fill').forEach(b => barObserver.observe(b));
   </script>
 </body>
 </html>
